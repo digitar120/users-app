@@ -1,0 +1,2 @@
+INSERT INTO "USER" VALUES (36693120, 'Wálter', 'Clemente');
+INSERT INTO "USER" VALUES (31105157, 'Rosa', 'Otero');
