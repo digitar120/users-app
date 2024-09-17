@@ -3,6 +3,7 @@ package com.digitar120.usersapp.util;
 import com.digitar120.usersapp.exception.MyException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -73,7 +74,7 @@ public final class MyMethods {
         Optional<T> optionalElement = repository.findById(id);
 
         if(optionalElement.isEmpty()) {
-            throw new MyException(exceptionMessage, httpStatusCode);
+            throw new ResponseStatusException(httpStatusCode, exceptionMessage);
         }
 
         return optionalElement.get();
@@ -86,7 +87,7 @@ public final class MyMethods {
         Optional<T> optionalElement = repository.findById(id);
 
         if(optionalElement.isPresent()) {
-            throw new MyException(exceptionMessage, httpStatusCode);
+            throw new ResponseStatusException(httpStatusCode, exceptionMessage);
         }
     }
 }
