@@ -1,6 +1,5 @@
 package com.digitar120.usersapp.util;
 
-import com.digitar120.usersapp.exception.MyException;
 import com.digitar120.usersapp.exception.globalhandler.BadRequestException;
 import com.digitar120.usersapp.exception.globalhandler.NotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
