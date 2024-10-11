@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static com.digitar120.usersapp.util.MyMethods.*;
+import static com.digitar120.usersapp.util.LocalUtilityMethods.*;
 
 @Service
 public class UserService {
