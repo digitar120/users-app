@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Java 17 o mayor
+JAVA_HOME=$HOME/.jdks/corretto-19.0.2
+
+DOCKER_IP=host.docker.internal
+
+CONFIG_SERVER_IP="CONFIG_SERVER_IP=$DOCKER_IP"
+CONFIG_SERVER_PORT="CONFIG_SERVER_PORT=8888"
+
+AUTHSERVER_IP="AUTHSERVER_IP=$DOCKER_IP"
+AUTHSERVER_PORT="AUTHSERVER_PORT=9090"
+
+RABBITMQ_IP="RABBITMQ_IP=$DOCKER_IP"
+RABBITMQ_PORT="RABBITMQ_PORT=5672"
+
+EUREKA_IP="EUREKA_IP=$DOCKER_IP"
+EUREKA_PORT="EUREKA_PORT=8761"
+
+
+bash ./mvnw \
+    -D$CONFIG_SERVER_IP \
+    -D$CONFIG_SERVER_PORT \
+    -D$AUTHSERVER_IP \
+    -D$AUTHSERVER_PORT \
+    -D$RABBITMQ_IP \
+    -D$RABBITMQ_PORT \
+    -D$EUREKA_IP \
+    -D$EUREKA_PORT \
+    package
+
+
+docker build -t digitar120/users .
+docker run --rm \
+    -e "$CONFIG_SERVER_IP" \
+    -e "$CONFIG_SERVER_PORT" \
+    -e "$AUTHSERVER_IP" \
+    -e "$AUTHSERVER_PORT" \
+    -e "$RABBITMQ_IP" \
+    -e "$RABBITMQ_PORT" \
+    -e "$EUREKA_IP" \
+    -e "$EUREKA_PORT" \
+    -p 9001:9001 \
+    -t digitar120/users

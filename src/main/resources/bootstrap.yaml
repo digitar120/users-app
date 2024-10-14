@@ -1,4 +1,5 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://${CONFIG_SERVER_IP}:${CONFIG_SERVER_PORT}
+      #uri: http://localhost:8888
