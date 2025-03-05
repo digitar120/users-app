@@ -6,6 +6,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Date;
 
+/**
+ * Exception generation for HTTP errors.
+ * @author Gabriel Pérez (digitar120)
+ * @see CustomHttpStatusException
+ * @see BadRequestException
+ * @see NotFoundException
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

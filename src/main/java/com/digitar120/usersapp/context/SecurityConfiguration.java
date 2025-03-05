@@ -10,6 +10,11 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * OAuth2 configuration.
+ * <p>Set to reject unauthorized calls.</p>
+ * @author Gabriel Pérez (digitar120)
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration  {
