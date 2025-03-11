@@ -24,6 +24,12 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the user endpoint.
+ * @author Gabriel Pérez (digitar120)
+ * @see User
+ * @see UserService
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTests {
 
@@ -36,6 +42,9 @@ public class UserServiceTests {
 
     @Mock NewUserDTOToUser mapper;
 
+    /**
+     * Initialization for the {@code ExpectedException} object.
+     */
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -52,6 +61,13 @@ public class UserServiceTests {
                 .when(repo).save(any(User.class));
     }
 
+    /**
+     * Given the following returning a valid list:
+     * <ul>
+     * <li> {@link UserRepository#findAll()}</li>
+     * </ul>
+     * Assert that {@link UserService#listAllUsers()} executes that method.
+     */
     @Test
     @DisplayName("listAllUsers llama para buscar")
     public void test_when_listAllUsers_then_repoSearchCallMade(){
@@ -62,6 +78,13 @@ public class UserServiceTests {
         verify(repo, times(1)).findAll();
     }
 
+    /**
+     * Given the following returning a valid list:
+     * <ul>
+     * <li> {@link UserRepository#findAll()}</li>
+     * </ul>
+     * Assert that {@link UserService#listAllUsers()} returns a non-empty list.
+     */
     @Test
     @DisplayName("listAllUsers no devuelve lista vacía")
     public void test_when_listAllUsers_then_returnedListNotEmpty(){
@@ -70,6 +93,13 @@ public class UserServiceTests {
         assertFalse(service.listAllUsers().isEmpty());
     }
 
+    /**
+     * Given the following returning a valid user:
+     * <ul>
+     * <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     * Assert that {@link UserService#findById(Integer)} executes that method.
+     */
     @Test
     @DisplayName("findById ejecuta búsqueda")
     public void test_when_findById_then_searchCallMade(){
@@ -80,6 +110,13 @@ public class UserServiceTests {
         verify(repo, times(1)).findById(ID_USER_1);
     }
 
+    /**
+     * Given the following returning a valid user:
+     * <ul>
+     * <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     * ASsert that its return is the same as the return from {@link UserService#findById(Integer)}.
+     */
     @Test
     @DisplayName("findById devuelve objeto correcto")
     public void test_when_findById_then_correctObjectReturned(){
@@ -88,6 +125,19 @@ public class UserServiceTests {
         assertEquals(USER_1, service.findById(ID_USER_1));
     }
 
+    /**
+     * Given the following returning nothing:
+     * <ul>
+     * <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     * And the following returning a valid response:
+     * <ul>
+     *     <li> {@link UserRepository#save(Object)}</li>
+     *      <li> {@link NewUserDTOToUser#map(NewUserDTO)}</li>
+     * </ul>
+     *
+     * Assert that {@link UserService#newUser(NewUserDTO)} executes all three methods.
+     */
     @Test
     @DisplayName("newUser ejecuta búsqueda, mapeo y guardado")
     public void test_when_newUser_then_searchMapAndSaveCallsMade(){
@@ -103,6 +153,7 @@ public class UserServiceTests {
         verify(mapper, times(1)).map(userDTO);
         verify(repo, times(1)).save(any(User.class));
     }
+
 
     @Test
     @DisplayName("newUser devuelve objecto correcto")
