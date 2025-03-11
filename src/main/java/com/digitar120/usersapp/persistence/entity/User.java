@@ -3,9 +3,16 @@ package com.digitar120.usersapp.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Definition of the User table.
+ * @author Gabriel Pérez (digitar120)
+ */
 @Entity @Table(name = "USER")
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 public class User {
+    /**
+     * ID representing an individual person's identifying number. Must be managed manually.
+     */
     @Id @Column(name = "USER_ID")
     private Integer id;
 
