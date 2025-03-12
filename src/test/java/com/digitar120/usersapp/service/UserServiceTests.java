@@ -155,6 +155,20 @@ public class UserServiceTests {
     }
 
 
+    /**
+     * Given the following returning nothing:
+     * <ul>
+     *     <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     *
+     * And the following returning valid responses:
+     * <ul>
+     *     <li>{@link UserRepository#save(Object)}</li>
+     * <li> {@link NewUserDTOToUser#map(NewUserDTO)}</li>
+     * </ul>
+     *
+     * Assert that the return of the mapper is the same as {@link UserService#newUser(NewUserDTO)}.
+     */
     @Test
     @DisplayName("newUser devuelve objecto correcto")
     public void test_when_newUser_then_correctObjectReturned(){
@@ -169,6 +183,15 @@ public class UserServiceTests {
         assertEquals(newUser, service.newUser(userDTO));
     }
 
+    /**
+     * Given the following returning valid responses:
+     * <ul>
+     *     <li> {@link UserRepository#findById(Object)}</li>
+     * <li> {@link UserRepository#save(Object)}</li>
+     * </ul>
+     *
+     * Assert that {@link UserService#editUser(Integer, EditUserDTO)} executes both methods.
+     */
     @Test
     @DisplayName("editUser ejecuta búsqueda y guardado")
     public void test_when_editUser_then_searchAndSaveCallsMade(){
@@ -183,6 +206,14 @@ public class UserServiceTests {
         verify(repo, times(1)).save(any(User.class));
     }
 
+    /**
+     * Given the following returning nothing:
+     * <ul>
+     *     <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     *
+     * Assert that {@link UserService#editUser(Integer, EditUserDTO)} throws an appropriate exception.
+     */
     @Test
     @DisplayName("editUser arroja excepción correctamente")
     public void test_when_editUser_and_userNotFound_then_exceptionThrown(){
@@ -194,6 +225,15 @@ public class UserServiceTests {
         service.editUser(1, new EditUserDTO());
     }
 
+    /**
+     * Given the following returning valid responses:
+     * <ul>
+     *     <li> {@link UserRepository#findById(Object)}</li>
+     * <li> {@link UserRepository#save(Object)}</li>
+     * </ul>
+     * 
+     * Assert that the response from {@link UserService#editUser(Integer, EditUserDTO)} matches a control user.
+     */
     @Test
     @DisplayName("editUser devuelve elemento correctamente")
     public void test_when_editUser_then_returnCoorectObject(){
@@ -208,6 +248,14 @@ public class UserServiceTests {
                         service.editUser(1, userDTO)));
     }
 
+    /**
+     * Given the following returning a valid response:
+     * <ul>
+     *     <li> {@link UserRepository#findById(Object)}</li>
+     * </ul>
+     *
+     * Assert that {@link UserService#deleteUser(Integer)} executes that method, and additionally {@link UserRepository#deleteById(Object)}.
+     */
     @Test
     @DisplayName("deleteUser ejecuta búsqueda y borrado")
     public void test_when_deleteUser_then_searchAndDeletionCallsMade(){
