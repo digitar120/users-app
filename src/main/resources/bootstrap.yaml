@@ -1,4 +1,8 @@
 spring:
+  application:
+    name: users-app
+
   cloud:
     config:
       uri: http://${CONFIG_SERVER_IP}:${CONFIG_SERVER_PORT}
+      profile: dev

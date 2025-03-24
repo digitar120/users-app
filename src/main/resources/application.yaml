@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: users-app
-
-  cloud:
-    config:
-      profile: dev
