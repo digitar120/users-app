@@ -13,7 +13,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Swagger / Open API configuration.
  * @author Gabriel Pérez (digitar120)
  */
-//@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
