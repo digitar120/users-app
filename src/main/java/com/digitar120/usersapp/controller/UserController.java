@@ -34,9 +34,9 @@ public class UserController {
      * List all elements within the repository.
      * @return A List of Users of the contents of the repository.
      */
-    @Operation(summary = "Listar todos los usuarios", description = "Devuelve todos los usuarios registrados")
+    @Operation(summary = "List all users.", description = "Produce a JSON object with details about all registered users.")
     @ApiResponses(value={
-            @ApiResponse(responseCode ="404" , description = "Completado correctamente")
+            @ApiResponse(responseCode ="404" , description = "Request completed correctly.")
     })
     @GetMapping
     public List<User> findAll(){return service.listAllUsers();}
@@ -46,10 +46,10 @@ public class UserController {
      * @param id The ID to match the user with.
      * @return A matching user, if there's a match.
      */
-    @Operation(summary = "Buscar por ID", description = "De encontrarse, devuelve la información de un usuario")
+    @Operation(summary = "Search user by ID.", description = "Produces a JSON object with details about a matching user.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Completado correctamente"),
-            @ApiResponse(responseCode = "404", description = "No se encontró al usuario")
+            @ApiResponse(responseCode = "200", description = "Request completed correctly."),
+            @ApiResponse(responseCode = "404", description = "User not found.")
     })
     @GetMapping("/{id}")
     public User findById(@PathVariable Integer id){
@@ -63,10 +63,10 @@ public class UserController {
      * @param newUserDTO Object containing the new user's information, read from a JSON file.
      * @return A copy of the new user object created in the database.
      */
-    @Operation(summary = "Registrar usuario", description = "Registrar un nuevo usuario, mediante cuerpo JSON, incluyendo todos los datos.")
+    @Operation(summary = "Register a new user.", description = "Register a new user in the database with the provided ID (integer), name and last name.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Completado correctamente"),
-            @ApiResponse(responseCode = "400", description = "El usuario ya existe")
+            @ApiResponse(responseCode = "200", description = "Completed correctly."),
+            @ApiResponse(responseCode = "400", description = "An user has already been registered with that ID.")
     })
     @PostMapping
     public User newUser(@RequestBody NewUserDTO newUserDTO){
@@ -81,10 +81,10 @@ public class UserController {
      * @param userDTO Object containing new information.
      * @return A copy of the updated user object.
      */
-    @Operation(summary = "Editar usuario", description = "Editar un usuario, ingresando ID mediante URL, y datos mediante JSON.")
+    @Operation(summary = "Edit an user's details.", description = "Edit an user's information, providing their ID in the URL, and the new information in a JSON object.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Completado correctamente"),
-            @ApiResponse(responseCode = "404", description = "No se encontró al usuario")
+            @ApiResponse(responseCode = "200", description = "Request completed correctly."),
+            @ApiResponse(responseCode = "404", description = "User not found.")
     })
     @PutMapping("/{id}")
     public User editUser(@PathVariable Integer id, @RequestBody EditUserDTO userDTO){
@@ -97,10 +97,10 @@ public class UserController {
      * Delete a user's entry from the database.
      * @param id ID to match the user entry with.
      */
-    @Operation(summary = "Remover usuario", description = "Remover un usuario, ingresando ID mediante URL")
+    @Operation(summary = "Remove an user from the database.", description = "Remove an entry from the database, citing their ID in the URL.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Completado correctamente"),
-            @ApiResponse(responseCode = "404", description = "No se encontró al usuario")
+            @ApiResponse(responseCode = "200", description = "Request completed correctly."),
+            @ApiResponse(responseCode = "404", description = "User not found.")
     })
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id){
